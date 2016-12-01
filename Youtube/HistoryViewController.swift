@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HistoryViewController: BaseViewController, YoutubeVideosTableViewDelegete {
+class HistoryViewController: BaseViewController {
     
     @IBOutlet weak var tableViewContainer: UIView!
     @IBOutlet weak var initialLabel: UILabel!
@@ -26,12 +26,6 @@ class HistoryViewController: BaseViewController, YoutubeVideosTableViewDelegete 
             tableViewContainer.isHidden = false
         }
     }
-    
-    func removeVideoFromList(_ video: Video, _ isLastItem: Bool) -> Bool {
-        initialLabel.isHidden = !isLastItem
-        tableViewContainer.isHidden = isLastItem
-        return CoreDataHelper.removeVideo(video, .History)
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -46,4 +40,12 @@ class HistoryViewController: BaseViewController, YoutubeVideosTableViewDelegete 
         super.prepare(for: segue, sender: sender)
     }
   
+}
+
+extension HistoryViewController: YoutubeVideosTableViewDelegete {
+    func removeVideoFromList(_ video: Video, _ isLastItem: Bool) -> Bool {
+        initialLabel.isHidden = !isLastItem
+        tableViewContainer.isHidden = isLastItem
+        return CoreDataHelper.removeVideo(video, .History)
+    }
 }

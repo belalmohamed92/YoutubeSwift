@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesViewController: BaseViewController, YoutubeVideosTableViewDelegete{
+class FavoritesViewController: BaseViewController {
     @IBOutlet weak var initialLabel: UILabel!
     @IBOutlet weak var tableViewContainer: UIView!
 
@@ -30,12 +30,6 @@ class FavoritesViewController: BaseViewController, YoutubeVideosTableViewDeleget
         }
     }
     
-    func removeVideoFromList(_ video: Video, _ isLastItem: Bool) -> Bool {
-        initialLabel.isHidden = !isLastItem
-        tableViewContainer.isHidden = isLastItem
-        return CoreDataHelper.removeVideo(video, .Favorites)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -48,5 +42,13 @@ class FavoritesViewController: BaseViewController, YoutubeVideosTableViewDeleget
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+    }
+}
+
+extension FavoritesViewController: YoutubeVideosTableViewDelegete {
+    func removeVideoFromList(_ video: Video, _ isLastItem: Bool) -> Bool {
+        initialLabel.isHidden = !isLastItem
+        tableViewContainer.isHidden = isLastItem
+        return CoreDataHelper.removeVideo(video, .Favorites)
     }
 }
