@@ -46,5 +46,13 @@ class JsonFormatter {
         
         return SearchResponse(videos,nextPageToken,resultsPerPage,totalResults)
     }
+    
+    static func formatYoutubeDownloadLinkResponse(_ jsonResponse: [String: Any]) -> AudioDownloadResponse {
+        let link = jsonResponse["link"] as? String ?? ""
+        let title = jsonResponse["title"] as? String ?? ""
+        let length = jsonResponse["length"] as? String ?? ""
+        
+        return AudioDownloadResponse(title,length,link)
+    }
 
 }

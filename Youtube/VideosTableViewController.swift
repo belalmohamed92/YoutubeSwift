@@ -62,10 +62,9 @@ class VideosTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-           let video =  videosList.remove(at: indexPath.row)
-            if delegate!.removeVideoFromList(video, videosList.count == 0) {
-                 tableView.deleteRows(at: [indexPath], with: .fade)
-            }
+            let video =  videosList.remove(at: indexPath.row)
+            delegate!.removeVideoFromList(video, videosList.count == 0)
+            tableView.deleteRows(at: [indexPath], with: .left)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -92,8 +91,7 @@ class VideosTableViewController: UITableViewController {
         if segue.identifier == "videoDetails"{
             let detailedVideoViewController = segue.destination as? DetailedVideoViewController
             let index = tableView.indexPathForSelectedRow?.row ?? 0
-            detailedVideoViewController?.video = videosList[index]
-            _ = CoreDataHelper.saveVideo(videosList[index],.History)
+            detailedVideoViewController?.video = CoreDataHelper.saveVideo(videosList[index],.History)
         }
 
     }

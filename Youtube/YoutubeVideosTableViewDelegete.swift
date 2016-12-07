@@ -9,5 +9,5 @@
 import Foundation
 
 protocol YoutubeVideosTableViewDelegete {
-    func removeVideoFromList(_ video: Video, _ isLastItem: Bool) -> Bool
+    func removeVideoFromList(_ video: Video, _ isLastItem: Bool)
 }

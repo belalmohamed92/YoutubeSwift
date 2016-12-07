@@ -46,9 +46,9 @@ class FavoritesViewController: BaseViewController {
 }
 
 extension FavoritesViewController: YoutubeVideosTableViewDelegete {
-    func removeVideoFromList(_ video: Video, _ isLastItem: Bool) -> Bool {
+    func removeVideoFromList(_ video: Video, _ isLastItem: Bool){
         initialLabel.isHidden = !isLastItem
         tableViewContainer.isHidden = isLastItem
-        return CoreDataHelper.removeVideo(video, .Favorites)
+        _ =  CoreDataHelper.removeVideo(video, .Favorites)
     }
 }

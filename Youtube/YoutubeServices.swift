@@ -13,12 +13,13 @@ class YoutubeServices {
     
     private static let apiKey = "AIzaSyA1VTC9rqm7B9tpL7I8wWgl2_pzK51lWsk"
     private static let baseUrl = "https://www.googleapis.com/youtube/v3/search"
-    private static let part = "id,snippet" //Default, Developer will be able to change that.
-    private static let maxResults = 50 //Default, Developer will be able to change that.
+    private static var part = "id,snippet" //Default, Developer will be able to change that.
+    private static var maxResults = 50 //Default, Developer will be able to change that.
+    private static var order = "viewCount" //Default, Developer will be able to change that.
     
     
     static func searchVideos(_ searchQuery: String,_ closure:@escaping (_ vid:[Video]) -> Void){
-        let params:Parameters = ["part":part,"maxResults":maxResults,"key":apiKey,"q":searchQuery,"type":"video"]
+        let params:Parameters = ["part":part,"maxResults":maxResults,"key":apiKey,"q":searchQuery,"type":"video","order":order]
         Alamofire.request(baseUrl, parameters: params)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -34,9 +35,4 @@ class YoutubeServices {
                 }
         }
     }
-    
-    static func searchVideos(_ searchQuery: String, _ part: String, _ maxResults: Int){
-        
-    }
-    
 }

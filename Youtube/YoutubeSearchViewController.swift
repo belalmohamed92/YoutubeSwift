@@ -35,10 +35,12 @@ class YoutubeSearchViewController: BaseViewController, UITextFieldDelegate{
         holderLabel.isHidden = true
         indicatorView.startAnimating()
         tableViewContainer.isHidden = true
-        YoutubeServices.searchVideos(searchQuery) { (videosList) in
-            self.videosList = videosList
-            self.indicatorView.stopAnimating()
-            self.tableViewContainer.isHidden = false
+        YoutubeServices.searchVideos(searchQuery) {[weak self] (videosList) in
+            if let weakSelf = self {
+                weakSelf.videosList = videosList
+                weakSelf.indicatorView.stopAnimating()
+                weakSelf.tableViewContainer.isHidden = false
+            }
         }
     }
     

@@ -1,18 +1,21 @@
 PODS:
   - Alamofire (4.2.0)
   - Kingfisher (3.2.1)
+  - Toast-Swift (2.0.0)
   - youtube-ios-player-helper (0.1.6)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - Kingfisher (~> 3.0)
+  - Toast-Swift (~> 2.0.0)
   - youtube-ios-player-helper (~> 0.1.4)
 
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   Kingfisher: 64ef28c6d3d6f344e3ae2d7f5c9da80439505d99
+  Toast-Swift: 5b2f8f720f7e78e48511f693df1f9c9a6e38a25a
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 38050b04bef50a39800bdea9dba41f89c97d659f
+PODFILE CHECKSUM: 127d3e836043df5c7281f9a51328be4f5bbe63f2
 
 COCOAPODS: 1.1.1

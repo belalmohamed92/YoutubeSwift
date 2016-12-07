@@ -10,6 +10,7 @@ import Foundation
 
 class Video {
 
+    //Main API Data Coming from the Youtube Api.
     private var name: String?
     private var id: String?
     private var description: String?
@@ -17,6 +18,14 @@ class Video {
     private var publishedDate: Date?
     private var channelTitle: String?
     
+    //Data added later locally.
+    private var isFavorite: Bool?
+    private var isHistory: Bool?
+    private var localUrl: String?
+    private var saveDate: Date?
+    
+    
+    //The init only initalize the core data coming from the youtube api
     init(_ name:String,_ id:String,_ description:String, _ thumbnailUrl: String, _ publishedDate: Date?, _ channelTitle: String) {
         self.name = name
         self.description = description
@@ -24,6 +33,40 @@ class Video {
         self.thumbnailUrl = thumbnailUrl
         self.publishedDate = publishedDate
         self.channelTitle = channelTitle
+    }
+    
+    //Setters
+    func setFavorite(_ isFavorite: Bool) {
+        self.isFavorite = isFavorite
+    }
+    
+    func setHistory(_ isHistory: Bool) {
+        self.isHistory = isHistory
+    }
+    
+    func setLocalUrl(_ localUrl: String) {
+        self.localUrl = localUrl
+    }
+    
+    func setSaveDate(_ saveDate: Date?) {
+        self.saveDate = saveDate
+    }
+    
+    //Getters
+    func isSavedAsFavorite() -> Bool {
+      return isFavorite ?? false
+    }
+    
+    func isSavedAsHistory() -> Bool {
+      return isHistory ?? false
+    }
+    
+    func getLocalUrl() -> String {
+      return localUrl ?? ""
+    }
+    
+    func getSaveDate() -> Date? {
+      return saveDate
     }
     
     func getName() -> String? {
@@ -34,8 +77,8 @@ class Video {
         return description
     }
     
-    func getId() -> String? {
-        return id
+    func getId() -> String {
+        return id ?? ""
     }
     
     func getThumbnailUrl() -> String? {
@@ -47,7 +90,6 @@ class Video {
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         dateFormatter.locale = Locale(identifier: "en_US")
-//        dateFormatter.dateFormat = "yyyy-MM-dd"
         if let date = publishedDate {
             return dateFormatter.string(from: date)
         }
@@ -61,4 +103,6 @@ class Video {
     func getChannelTitle() -> String? {
         return channelTitle
     }
+    
+    
 }

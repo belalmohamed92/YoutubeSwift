@@ -26,6 +26,10 @@
 		5D8264381DE6D05D007CEA86 /* YoutubeServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8264371DE6D05D007CEA86 /* YoutubeServices.swift */; };
 		5D82643D1DE6F099007CEA86 /* JsonFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D82643C1DE6F099007CEA86 /* JsonFormatter.swift */; };
 		5D82643F1DE6F1A8007CEA86 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D82643E1DE6F1A8007CEA86 /* SearchResponse.swift */; };
+		5DA04A1D1DF16A9700C939DB /* AudioDownloadServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA04A1C1DF16A9700C939DB /* AudioDownloadServices.swift */; };
+		5DA04A1F1DF16B3200C939DB /* AudioDownloadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA04A1E1DF16B3200C939DB /* AudioDownloadResponse.swift */; };
+		5DA04A251DF5B5ED00C939DB /* YoutubeAudioPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA04A241DF5B5ED00C939DB /* YoutubeAudioPlayer.xib */; };
+		5DA04A271DF5C43100C939DB /* YoutubeAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA04A261DF5C43100C939DB /* YoutubeAudioPlayer.swift */; };
 		5DC45F1C1DF043B000C88E6E /* YoutubeVideosTableViewDelegete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC45F1B1DF043B000C88E6E /* YoutubeVideosTableViewDelegete.swift */; };
 		5DD57B301DED887C00894B7C /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD57B2F1DED887C00894B7C /* CoreDataHelper.swift */; };
 /* End PBXBuildFile section */
@@ -53,6 +57,10 @@
 		5D8264371DE6D05D007CEA86 /* YoutubeServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeServices.swift; sourceTree = "<group>"; };
 		5D82643C1DE6F099007CEA86 /* JsonFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonFormatter.swift; sourceTree = "<group>"; };
 		5D82643E1DE6F1A8007CEA86 /* SearchResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
+		5DA04A1C1DF16A9700C939DB /* AudioDownloadServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioDownloadServices.swift; sourceTree = "<group>"; };
+		5DA04A1E1DF16B3200C939DB /* AudioDownloadResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioDownloadResponse.swift; sourceTree = "<group>"; };
+		5DA04A241DF5B5ED00C939DB /* YoutubeAudioPlayer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YoutubeAudioPlayer.xib; sourceTree = "<group>"; };
+		5DA04A261DF5C43100C939DB /* YoutubeAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeAudioPlayer.swift; sourceTree = "<group>"; };
 		5DC45F1B1DF043B000C88E6E /* YoutubeVideosTableViewDelegete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeVideosTableViewDelegete.swift; sourceTree = "<group>"; };
 		5DD57B2F1DED887C00894B7C /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		FDB80DC99F493CC041265BAF /* Pods-Youtube.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Youtube.release.xcconfig"; path = "Pods/Target Support Files/Pods-Youtube/Pods-Youtube.release.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +108,7 @@
 		5D1891B21DE45C8800189DD4 /* Youtube */ = {
 			isa = PBXGroup;
 			children = (
+				5DA04A201DF5B01F00C939DB /* Custom views */,
 				5DC45F181DF0426E00C88E6E /* Protocols */,
 				5DD57B2E1DED881800894B7C /* CoreData */,
 				5D8264391DE6D2C8007CEA86 /* Utils */,
@@ -152,6 +161,7 @@
 			children = (
 				5D1891CE1DE4861400189DD4 /* Video.swift */,
 				5D82643E1DE6F1A8007CEA86 /* SearchResponse.swift */,
+				5DA04A1E1DF16B3200C939DB /* AudioDownloadResponse.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -161,6 +171,7 @@
 			children = (
 				5D8264371DE6D05D007CEA86 /* YoutubeServices.swift */,
 				5D82643C1DE6F099007CEA86 /* JsonFormatter.swift */,
+				5DA04A1C1DF16A9700C939DB /* AudioDownloadServices.swift */,
 			);
 			name = Apis;
 			sourceTree = "<group>";
@@ -170,6 +181,23 @@
 			children = (
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		5DA04A201DF5B01F00C939DB /* Custom views */ = {
+			isa = PBXGroup;
+			children = (
+				5DA04A231DF5B5C700C939DB /* XIB */,
+				5DA04A261DF5C43100C939DB /* YoutubeAudioPlayer.swift */,
+			);
+			name = "Custom views";
+			sourceTree = "<group>";
+		};
+		5DA04A231DF5B5C700C939DB /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				5DA04A241DF5B5ED00C939DB /* YoutubeAudioPlayer.xib */,
+			);
+			name = XIB;
 			sourceTree = "<group>";
 		};
 		5DC45F181DF0426E00C88E6E /* Protocols */ = {
@@ -232,7 +260,13 @@
 				TargetAttributes = {
 					5D1891AF1DE45C8800189DD4 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 3RLD24AM89;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -262,6 +296,7 @@
 				5D1891C11DE45C8800189DD4 /* LaunchScreen.storyboard in Resources */,
 				5D1891BE1DE45C8800189DD4 /* Assets.xcassets in Resources */,
 				5D1891B91DE45C8800189DD4 /* Main.storyboard in Resources */,
+				5DA04A251DF5B5ED00C939DB /* YoutubeAudioPlayer.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,9 +357,11 @@
 			files = (
 				5D1891B61DE45C8800189DD4 /* YoutubeSearchViewController.swift in Sources */,
 				5D8264381DE6D05D007CEA86 /* YoutubeServices.swift in Sources */,
+				5DA04A1D1DF16A9700C939DB /* AudioDownloadServices.swift in Sources */,
 				5DD57B301DED887C00894B7C /* CoreDataHelper.swift in Sources */,
 				5D1891C91DE47AEF00189DD4 /* VideoTableViewCell.swift in Sources */,
 				5D1891BC1DE45C8800189DD4 /* Youtube.xcdatamodeld in Sources */,
+				5DA04A1F1DF16B3200C939DB /* AudioDownloadResponse.swift in Sources */,
 				5D66D9C71DE8700700C71829 /* CustomTabBarViewController.swift in Sources */,
 				5D1891D51DE58B1A00189DD4 /* VideosTableViewController.swift in Sources */,
 				5DC45F1C1DF043B000C88E6E /* YoutubeVideosTableViewDelegete.swift in Sources */,
@@ -333,6 +370,7 @@
 				5D1891B41DE45C8800189DD4 /* AppDelegate.swift in Sources */,
 				5D1891D71DE5C50C00189DD4 /* BaseViewController.swift in Sources */,
 				5D82643F1DE6F1A8007CEA86 /* SearchResponse.swift in Sources */,
+				5DA04A271DF5C43100C939DB /* YoutubeAudioPlayer.swift in Sources */,
 				5D1891D11DE5835500189DD4 /* FavoritesViewController.swift in Sources */,
 				5D1891D31DE5849C00189DD4 /* HistoryViewController.swift in Sources */,
 				5D1891CF1DE4861400189DD4 /* Video.swift in Sources */,
@@ -461,6 +499,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3RLD24AM89;
 				INFOPLIST_FILE = Youtube/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.modeso.Youtube;
@@ -475,6 +515,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3RLD24AM89;
 				INFOPLIST_FILE = Youtube/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ch.modeso.Youtube;

@@ -43,9 +43,9 @@ class HistoryViewController: BaseViewController {
 }
 
 extension HistoryViewController: YoutubeVideosTableViewDelegete {
-    func removeVideoFromList(_ video: Video, _ isLastItem: Bool) -> Bool {
+    func removeVideoFromList(_ video: Video, _ isLastItem: Bool) {
         initialLabel.isHidden = !isLastItem
         tableViewContainer.isHidden = isLastItem
-        return CoreDataHelper.removeVideo(video, .History)
+        _ = CoreDataHelper.removeVideo(video, .History)
     }
 }

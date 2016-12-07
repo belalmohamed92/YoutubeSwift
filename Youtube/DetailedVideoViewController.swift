@@ -8,8 +8,9 @@
 
 import UIKit
 import youtube_ios_player_helper
+import Toast_Swift
 
-class DetailedVideoViewController: UIViewController, YTPlayerViewDelegate {
+class DetailedVideoViewController: UIViewController {
 
     var video: Video!
     let pVars = ["playsinline":1,"showinfo":0,"rel":1,"controls":1,"origin":"https://www.youtube.com","modestbranding":1] as [String : Any]
@@ -19,17 +20,18 @@ class DetailedVideoViewController: UIViewController, YTPlayerViewDelegate {
     @IBOutlet weak var channelTitle: UILabel!
     @IBOutlet weak var publishDate: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var downloadButton: UIButton!
+    @IBOutlet weak var downloadProgress: UIProgressView!
+    @IBOutlet weak var audioPlayer: YoutubeAudioPlayer!
+    @IBOutlet weak var youtubeLoaderView: UIView!
+
     
     @IBAction func buttonClicked(_ sender: UIButton) {
         switch sender.tag {
         case 1:
-            if !sender.isSelected && CoreDataHelper.saveVideo(video, .Favorites) {
-                sender.isSelected = true
-            }else{
-                _ = CoreDataHelper.removeVideo(video, .Favorites)
-                sender.isSelected = false
-            }
-            
+            saveToFavoritesButtonClicked()
+        case 2:
+            downloadButtonClicked()
         default:
             break
         }
@@ -38,35 +40,88 @@ class DetailedVideoViewController: UIViewController, YTPlayerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         youtubePlayer.delegate = self
-        loadViewsWithData()
+        initViews()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    private func loadViewsWithData(){
-        youtubePlayer.load(withVideoId: video!.getId()!, playerVars: pVars)
-        favoriteButton.isSelected = CoreDataHelper.isVideoExist(.Favorites, videoId: video.getId()!)
+    private func initViews(){
+        youtubePlayer.load(withVideoId: video.getId(), playerVars: pVars)
+        audioPlayer.delegate = self
+        
+        if video.getLocalUrl() != ""{
+            audioAvailableUIUpdate(URL(string: video.getLocalUrl()))
+        }
+        
+        favoriteButton.isSelected = video.isSavedAsFavorite()
         videoTitle.text = video.getName() ?? ""
         channelTitle.text = video.getChannelTitle() ?? ""
         publishDate.text = video.getPublishedDate()
     }
     
-    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
-        print("Player Is Ready")
+    private func audioAvailableUIUpdate(_ url: URL?) {
+        if let url = url {
+            downloadButton.isHidden = true
+            downloadProgress.isHidden = true
+            audioPlayer.isHidden = false
+            audioPlayer.loadUrl(url)
+        }else {
+            self.view.makeToast("Invalid audio link", duration: 3.0, position: .bottom)
+        }
     }
+    
+    private func downloadButtonClicked(){
+        downloadButton.isEnabled = false
+        AudoioDownloadServices.fetchDownloadLink(video.getId(), { [weak self] (responseUrl) in
+            if let weakSelf = self {
+                if let url = responseUrl {
+                    _ = CoreDataHelper.saveAudioUrl(weakSelf.video.getId(), url.absoluteString)
+                    weakSelf.audioAvailableUIUpdate(url)
+                }else {
+                    weakSelf.view.makeToast("Failed downloading audio", duration: 3.0, position: .bottom)
+                    weakSelf.downloadButton.isEnabled = true
+                    weakSelf.downloadProgress.progress = 0
+                }
 
+            }}, { [weak self] (progress) in
+                self?.downloadProgress.progress = Float(progress)
+        })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        audioPlayer.stopAudio()
+    }
+    
+    private func saveToFavoritesButtonClicked(){
+        if !favoriteButton.isSelected {
+            video = CoreDataHelper.saveVideo(video, .Favorites)
+            favoriteButton.isSelected = true
+        }else{
+            _ = CoreDataHelper.removeVideo(video, .Favorites)
+            favoriteButton.isSelected = false
+        }
+    }
+}
+
+extension DetailedVideoViewController: YTPlayerViewDelegate {
+    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
+        youtubePlayer.isHidden = false
+    }
+    
+    func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
+        switch state {
+        case .playing:
+            audioPlayer.stopAudio()
+        default:
+            break
+        }
+    }
+    
+    func playerView(_ playerView: YTPlayerView, receivedError error: YTPlayerError) {
+      //Todo Notify user with any errors.
+    }
+}
+
+extension DetailedVideoViewController: YoutubeAudioDelegate {
+    func audioDidPlay() {
+        youtubePlayer.pauseVideo()
+    }
 }
