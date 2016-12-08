@@ -52,8 +52,8 @@ class DetailedVideoViewController: UIViewController {
         }
         
         favoriteButton.isSelected = video.isSavedAsFavorite()
-        videoTitle.text = video.getName() ?? ""
-        channelTitle.text = video.getChannelTitle() ?? ""
+        videoTitle.text = video.getName()
+        channelTitle.text = video.getChannelTitle()
         publishDate.text = video.getPublishedDate()
     }
     

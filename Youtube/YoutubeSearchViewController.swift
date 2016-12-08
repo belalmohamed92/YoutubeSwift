@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YoutubeSearchViewController: BaseViewController, UITextFieldDelegate{
+class YoutubeSearchViewController: BaseViewController{
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
@@ -44,15 +44,11 @@ class YoutubeSearchViewController: BaseViewController, UITextFieldDelegate{
         }
     }
     
-    override func cotrollerType() -> BaseViewController.ControllerType {
-        return .SearchController
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,6 +58,9 @@ class YoutubeSearchViewController: BaseViewController, UITextFieldDelegate{
         super.prepare(for: segue, sender: sender)
     }
     
+}
+
+extension YoutubeSearchViewController: UITextViewDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -70,4 +69,5 @@ class YoutubeSearchViewController: BaseViewController, UITextFieldDelegate{
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
 }

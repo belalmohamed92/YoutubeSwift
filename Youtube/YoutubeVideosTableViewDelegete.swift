@@ -8,6 +8,12 @@
 
 import Foundation
 
+/**
+ * This delgate is response for delegating any action from the TableViewContorller to the interested controller.
+ */
 protocol YoutubeVideosTableViewDelegete {
+    /**
+     This method is invoked when an item from the tableView is deleted.
+     */
     func removeVideoFromList(_ video: Video, _ isLastItem: Bool)
 }

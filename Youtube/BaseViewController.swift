@@ -35,20 +35,8 @@ class BaseViewController: UIViewController {
             videosListTableViewController?.delegate = self as? YoutubeVideosTableViewDelegete
         }
     }
-    
-    func cotrollerType() -> ControllerType {
-      return .SearchController
-    }
-    
     func setYoutubeVideoDelegate(_ delegate: YoutubeVideosTableViewDelegete) {
       videosListTableViewController?.delegate = delegate
     }
-    
-    enum ControllerType {
-        case SearchController
-        case FavoritesController
-        case HistoryController
-    }
-    
 }
 

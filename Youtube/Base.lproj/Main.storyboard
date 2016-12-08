@@ -318,12 +318,12 @@
             </objects>
             <point key="canvasLocation" x="79" y="216"/>
         </scene>
-        <!--Home-->
+        <!--Custom Tab Bar View Controller-->
         <scene sceneID="fYt-La-LqV">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Vir-lr-gks" customClass="CustomTabBarViewController" customModule="Youtube" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Home" id="0Gf-Oh-57O"/>
+                    <navigationItem key="navigationItem" id="0Gf-Oh-57O"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="uiy-A1-NRM">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -14,7 +14,6 @@ class FavoritesViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
     
@@ -34,12 +33,7 @@ class FavoritesViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func cotrollerType() -> BaseViewController.ControllerType {
-        return .FavoritesController
-    }
-    
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
     }

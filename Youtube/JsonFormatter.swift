@@ -8,8 +8,18 @@
 
 import Foundation
 
+/**
+ * The jsonFormatter is a helper class it's responsiblity is to formated the returned json to Object type that could be used within the application.
+ * Where is Gson here? ;)
+ */
 class JsonFormatter {
     
+    /**
+     * This method is responsible for formatting the youtube search api response mainly used by the YoutubeServices Class.
+     *
+     * @param jsonResponse is the response coming from the youtube api casted as [String: Any].
+     * @return searchResponse is the formatted object after the process of formatting.
+     */
     static func formatYouTubeJsonSearchResponse(_ jsonResponse: [String:Any]) -> SearchResponse {
         
         let pageInfo = jsonResponse["pageInfo"] as? [String: Any] ?? [:]
@@ -47,6 +57,12 @@ class JsonFormatter {
         return SearchResponse(videos,nextPageToken,resultsPerPage,totalResults)
     }
     
+    /**
+     * This method is responsible for formatting the downlaod audio link response mainly used by the AudioDownloadServices Class.
+     *
+     * @param jsonResponse is the response coming from the api used for downloading the audio casted as [String: Any].
+     * @return AudioDownloadResponse is the formatted object after the process of formatting.
+     */
     static func formatYoutubeDownloadLinkResponse(_ jsonResponse: [String: Any]) -> AudioDownloadResponse {
         let link = jsonResponse["link"] as? String ?? ""
         let title = jsonResponse["title"] as? String ?? ""

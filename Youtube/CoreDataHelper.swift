@@ -10,15 +10,31 @@ import Foundation
 import CoreData
 import UIKit
 
+/**
+ * This class is used as helper for the CoreData. it's main responsiblity is to deal with coreData action.
+ * Note: Any actions in the coreData should be handled through this helper class.
+ */
 class CoreDataHelper {
     
+    /**
+      Enum used in updating the history and favorites columns in the coreData with a generic update method for both.
+     */
     enum SaveType: String {
         case History = "isHistory"
         case Favorites = "isFavorite"
     }
     
+    /**
+     * This method is responsible for saving a specific video in the coreData.
+     *
+     * @param video holding the video object that needs to be saved.
+     * @param saveType enum History or Favorites stating where to save the video as a history or favorite
+     * @return Video after the update or the all new insertion.
+     */
     static func saveVideo( _ video:Video, _ saveType: SaveType) -> Video {
         //TODO Find a away to cast the object from the coreDate to Video object ( Extending NSManagedObject)
+        //This part is not finalized yet.
+        
         let context = getContext()
         
         if let video = checkVideoAlreadyExistAndUpdate(video, context, saveType, true) {
@@ -26,11 +42,11 @@ class CoreDataHelper {
         }else {
             let nsManagedVideoObject = NSEntityDescription.insertNewObject(forEntityName: "Video", into: context)
             nsManagedVideoObject.setValue(video.getId(), forKey: "videoId")
-            nsManagedVideoObject.setValue(video.getDescription()!, forKey: "videoDescription")
-            nsManagedVideoObject.setValue(video.getName()!, forKey: "videoTitle")
-            nsManagedVideoObject.setValue(video.getThumbnailUrl()!, forKey: "videoThumbnailUrl")
+            nsManagedVideoObject.setValue(video.getDescription(), forKey: "videoDescription")
+            nsManagedVideoObject.setValue(video.getName(), forKey: "videoTitle")
+            nsManagedVideoObject.setValue(video.getThumbnailUrl(), forKey: "videoThumbnailUrl")
             nsManagedVideoObject.setValue(video.getPublishedDateAsDate()!, forKey: "publishDate")
-            nsManagedVideoObject.setValue(video.getChannelTitle()!, forKey: "videoChannelTitle")
+            nsManagedVideoObject.setValue(video.getChannelTitle(), forKey: "videoChannelTitle")
             nsManagedVideoObject.setValue(saveType == .History, forKey: "isHistory")
             nsManagedVideoObject.setValue(saveType == .Favorites, forKey: "isFavorite")
             nsManagedVideoObject.setValue(Date(), forKey: "saveDate")
@@ -39,15 +55,37 @@ class CoreDataHelper {
         }
     }
     
+    /**
+     * This method is responsible for removing a specific video from a specific type within the coreData
+     * For example: if the Video got both Favorites and History flags true remove will only update the flag depending on the saveType
+     * if the saveType is the only true flag then the video will be removed from the coreData.
+     *
+     * @param  video holding the video that needs to be removed from the specfic saveType.
+     * @param saveType The saveType to remove the video from.
+     * @return Video? is returned if the video is totaly deleted from the coreData the return in nil else the updated video will be returned.
+     */
     static func removeVideo(_ video:Video, _ saveType: SaveType) -> Video? {
         let context = getContext()
         return checkVideoAlreadyExistAndUpdate(video, context, saveType, false)
     }
     
+    /**
+     * This method is responsible for geting the saved videos list for a specific type History or Favorites.
+     *
+     * @param saveType Enum either History or Favorite.
+     * @return [Video] the returned list of videos this could be empty list if there is no such a list saved in CoreData.
+     */
     static func getVideosList(_ saveType: SaveType) -> [Video] {
         return getVideos(saveType,nil)
     }
     
+    /**
+     * This method is responsible for updating a specific video with the local audio url after downloading it.
+     *
+     * @param videoId  the id of the video needs to be updated.
+     * @param audioUrl the url of the audio on the device.
+     * @return boolean true if the coreData is successfully update, else false.
+     */
     static func saveAudioUrl(_ videoId: String, _ audioUrl: String) -> Bool {
         let context = getContext()
         if let videoManagedObject = getvideoManagedObject(videoId, context) {
@@ -57,6 +95,7 @@ class CoreDataHelper {
         return false
     }
     
+    ////////////////////////////////////////////////////////////////////////////////////
     private static func getVideos(_ saveType: SaveType,_ videoId: String?) -> [Video] {
         var videos: [Video] = []
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Video")

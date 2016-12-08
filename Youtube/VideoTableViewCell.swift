@@ -30,11 +30,8 @@ class VideoTableViewCell: UITableViewCell {
     
     func setCellData(_ video: Video){
         self.video = video
-        
-        if let urlString = video.getThumbnailUrl(){
-             let url = URL(string: urlString)
-             videoThumbnail?.kf.setImage(with: url)
-        }
+        let url = URL(string: video.getThumbnailUrl())
+        videoThumbnail?.kf.setImage(with: url)
         videoTitle?.text = video.getName()
         publishDate?.text = video.getPublishedDate()
         channelTitle?.text = video.getChannelTitle()

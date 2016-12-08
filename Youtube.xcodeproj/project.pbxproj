@@ -111,7 +111,6 @@
 				5DA04A201DF5B01F00C939DB /* Custom views */,
 				5DC45F181DF0426E00C88E6E /* Protocols */,
 				5DD57B2E1DED881800894B7C /* CoreData */,
-				5D8264391DE6D2C8007CEA86 /* Utils */,
 				5D1891D81DE5CC7700189DD4 /* Apis */,
 				5D1891CD1DE485F800189DD4 /* Models */,
 				5D1891CC1DE4857E00189DD4 /* Custom Cells */,
@@ -174,13 +173,6 @@
 				5DA04A1C1DF16A9700C939DB /* AudioDownloadServices.swift */,
 			);
 			name = Apis;
-			sourceTree = "<group>";
-		};
-		5D8264391DE6D2C8007CEA86 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Utils;
 			sourceTree = "<group>";
 		};
 		5DA04A201DF5B01F00C939DB /* Custom views */ = {

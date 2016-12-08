@@ -32,10 +32,6 @@ class HistoryViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func cotrollerType() -> BaseViewController.ControllerType {
-        return .HistoryController
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
     }

@@ -69,20 +69,20 @@ class Video {
       return saveDate
     }
     
-    func getName() -> String? {
-        return name
+    func getName() -> String {
+        return name ?? ""
     }
     
-    func getDescription() -> String? {
-        return description
+    func getDescription() -> String {
+        return description ?? ""
     }
     
     func getId() -> String {
         return id ?? ""
     }
     
-    func getThumbnailUrl() -> String? {
-        return thumbnailUrl
+    func getThumbnailUrl() -> String {
+        return thumbnailUrl ?? ""
     }
     
     func getPublishedDate() -> String {
@@ -100,8 +100,8 @@ class Video {
         return publishedDate
     }
     
-    func getChannelTitle() -> String? {
-        return channelTitle
+    func getChannelTitle() -> String {
+        return channelTitle ?? ""
     }
     
     
