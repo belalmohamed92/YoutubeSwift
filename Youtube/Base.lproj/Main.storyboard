@@ -91,7 +91,7 @@
             <objects>
                 <tableViewController id="94y-Ty-Sae" customClass="VideosTableViewController" customModule="Youtube" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="102" sectionHeaderHeight="28" sectionFooterHeight="28" id="I1r-Br-YZS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="506"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -167,7 +167,7 @@
                         <viewControllerLayoutGuide type="bottom" id="er0-fP-4Rz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DiW-m6-RMb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="506"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M7O-s3-Fk6">
@@ -300,7 +300,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b8z-nb-cwu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3637.5999999999999" y="364.31784107946032"/>
+            <point key="canvasLocation" x="3636" y="365"/>
         </scene>
         <!--Custome Navigation View Controller-->
         <scene sceneID="yMg-n3-2CZ">
@@ -438,6 +438,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="SOQ-tW-9Wd"/>
+        <segue reference="ik9-ts-Bqv"/>
     </inferredMetricsTieBreakers>
 </document>
